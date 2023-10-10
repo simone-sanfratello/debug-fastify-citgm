@@ -3,7 +3,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const attempt = 8 // TODO from argv
+const attempt = 12 // TODO from argv
 
 const pullRequest = {
   // url: 'https://github.com/fastify/fastify/pull/5075',
@@ -41,7 +41,7 @@ async function main() {
   // TODO check if npm package version already exists > quit
 
   // copy from pr repo to aut repo
-  await run(`rsync -a ${pullRequest.fullpath}/ ${auxRepo.fullpath}/ --exclude .git .github`, { cwd })
+  await run(`rsync -a ${pullRequest.fullpath}/ ${auxRepo.fullpath}/ --exclude .git --exclude .github`, { cwd })
 
   // patch values and remove things to point to the debugging module
   const citgmJson = {
